@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Redirecting to CronometerClone…</title>
+  <script>
+    // OAuth redirect broker: Epic (which requires an https redirect URI) sends the
+    // authorization result here as ?code=…&state=…; we immediately hand it off to the
+    // native app via its custom URL scheme, which ASWebAuthenticationSession catches.
+    (function () {
+      var q = window.location.search || "";
+      window.location.replace("cronometerclone://epic-oauth" + q);
+    })();
+  </script>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; text-align: center;
+           margin-top: 25vh; color: #333; }
+  </style>
+</head>
+<body>
+  <p>Returning you to CronometerClone…</p>
+  <p><a id="manual" href="#">Tap here if you are not redirected.</a></p>
+  <script>
+    document.getElementById('manual').href =
+      "cronometerclone://epic-oauth" + (window.location.search || "");
+  </script>
+</body>
+</html>
